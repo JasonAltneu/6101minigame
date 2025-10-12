@@ -7,10 +7,7 @@ using UnityEngine.InputSystem;
 public class GameManager: MonoBehaviour, MinigameSubscriber
 {
     //Variables for the objects being instantiated
-    public GameObject rightArrow;
-    public GameObject leftArrow;
-    public GameObject upArrow;
-    public GameObject downArrow;
+    public GameObject[] Arrows;  //Order is down, left, right, up
 
     //Music Variables
     public float bpm = 150f;
@@ -26,11 +23,12 @@ public class GameManager: MonoBehaviour, MinigameSubscriber
     private Vector2 rightSocketPosition;
     private Vector2 upSocketPosition;
     private Vector2 downSocketPosition;
+    private System.Random rand = new System.Random();
 
     private float time = 0f;
     public void OnMinigameStart()
     {
-        GenerateArrows();
+        StartCoroutine(GenerateArrows());
     }
 
     //Time is up, calculate score, return the result, and end the Minigame
@@ -83,8 +81,11 @@ public class GameManager: MonoBehaviour, MinigameSubscriber
     IEnumerator GenerateArrows()
     {
         yield return new WaitForSeconds(instantiationInterval); // Wait for 3 seconds
-        //This is where I have to create an arrow at the proper position
-        GenerateArrows();
+        int idx = rand.Next(0, Arrows.Length);
+        GameObject newArrow = Instantiate(Arrows[idx]);
+        newArrow.transform.parent = transform;  //Parent the instantiated arrow to the game manager
+        newArrow.transform.position = new Vector2(-4.5f + 3f * idx, 3f);
+        StartCoroutine(GenerateArrows());
     }
 
     public float getInstantiationInterval()
