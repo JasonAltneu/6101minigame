@@ -7,3 +7,5 @@ The product attached was developed in less than 24 hours, with me creating the s
 My minigame was inspired by the likes of Disney's Dance Dance Revolution, and arcade games where arrows are moving down
     the screen, and the player has to press/step on a button corresponding to the arrows in time to score points.
 I decided to create a scoring system similar to Golf or Hearts, where points are bad, and points are given based on the distance between the arrow moving down the screen and the outline which indicates when the player is supposed to press the correct arrow key. If the player exceeds a certain value of points, they lose the game.
+
+The code as of now remains in the state that it was in when I submitted the project after the 24 hours, and there is more functionality when combined with the rest of the minigame
